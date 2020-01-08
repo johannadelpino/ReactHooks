@@ -4,7 +4,7 @@ const merge = require('webpack-merge');
 const common = require('./webpack.common.js');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
-const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
+const TerserWebpackPlugin = require('terser-webpack-plugin');
 
 module.exports = merge(common, {
   mode: 'production',
@@ -29,7 +29,7 @@ module.exports = merge(common, {
   },
   optimization: {
     minimizer: [
-      new UglifyJSPlugin({ extractComments: true }),
+      new TerserWebpackPlugin({ extractComments: true }),
       new OptimizeCSSAssetsPlugin({}),
     ],
     runtimeChunk: false,
